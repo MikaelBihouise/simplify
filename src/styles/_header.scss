@@ -1,0 +1,40 @@
+.header {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 2%;
+
+  h1 {
+    margin: 1rem;
+  }
+
+  input {
+    width: 300px;
+    border: none;
+    border-radius: 50px;
+    color: $color-black;
+    padding: 1rem 2rem;
+    margin: 0 1rem;
+    font-family: $typo-1;
+
+    &::placeholder {
+      color: $color-2;
+      font-family: $typo-1;
+    }
+  }
+
+  button {
+    @include defaultButton;
+  }
+
+  @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+    height: 15%;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    height: 22%;
+  }
+}

@@ -1,32 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import { getSpotifyAuthURL, getSpotifyParams } from './authentification';
+import React from 'react';
+import './styles/style.css';
+import { Provider } from 'react-redux';
+import Home from './components/Home';
+import store from './store';
 
 function App() {
-  const [URL, setURL] = useState<string>('');
-  const [accessToken, setAccessToken] = useState<string>('');
-
-  useEffect(() => {
-    async function loadURL() {
-      await getSpotifyAuthURL().then(setURL);
-    }
-    loadURL();
-  }, []);
-
-  useEffect(() => {
-    if (window.location.hash.includes('access_token')) {
-      setAccessToken(window.location.hash);
-    } else {
-      window.location.href = `${URL}`;
-    }
-  }, [URL]);
-
-  getSpotifyParams(accessToken);
-
   return (
-    <div className="App">
-      <h1>Simplify</h1>
-    </div>
+    <Provider store={store}>
+      <Home />
+    </Provider>
   );
 }
 
