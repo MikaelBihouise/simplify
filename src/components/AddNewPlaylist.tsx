@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { SpotifyToken } from '../authentification';
+import React from 'react';
 
 const AddNewPlaylist = () => {
-  const token = useSelector<SpotifyToken, SpotifyToken>((state) => state);
   const handleClick = () => {
-    console.log(token);
+    console.log('hey');
   };
 
   return (
