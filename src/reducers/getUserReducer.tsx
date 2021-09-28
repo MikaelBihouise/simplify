@@ -13,7 +13,6 @@ const getUserReducer = (
 ) => {
   switch (action.type) {
     case 'GET_USER_SUCCESS': {
-      console.log(action);
       return {
         ...state,
         id: action.payload.id,

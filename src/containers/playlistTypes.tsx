@@ -1,7 +1,4 @@
-const types = {
-  GET_USER: 'GET_USER',
-  SEARCH_TRACK: 'SEARCH_TRACK',
-  GET_TRACK: 'GET_TRACK',
+const playlistTypes = {
   GET_USER_PLAYLISTS_START: 'GET_USER_PLAYLISTS_START',
   GET_USER_PLAYLISTS_SUCCESS: 'GET_USER_PLAYLISTS_SUCCESS',
   GET_USER_PLAYLISTS_FAILURE: 'GET_USER_PLAYLISTS_FAILURE',
@@ -10,4 +7,18 @@ const types = {
   CREATE_PLAYLIST_FAILURE: 'CREATE_PLAYLIST_FAILURE',
 };
 
-export default types;
+export interface getUserPlaylistFailure {
+  error: string;
+}
+
+export interface ResponseGenerator {
+  config?: any;
+  data?: any;
+  headers?: any;
+  request?: any;
+  status?: number;
+  statusText?: string;
+  items: any;
+}
+
+export default playlistTypes;

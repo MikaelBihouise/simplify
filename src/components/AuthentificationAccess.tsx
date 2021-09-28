@@ -49,16 +49,18 @@ function AuthentificationAccess() {
   }, [tokenParams]);
 
   useEffect(() => {
-    const headers = { Authorization: `Bearer ${token.access_token}` };
-    const getUser = async (): Promise<string> => {
-      const response = await fetch('https://api.spotify.com/v1/me', {
-        headers,
-      });
-      const data = await response.json();
-      setUserID(data.id);
-      return data;
-    };
-    getUser();
+    if (tokenParams.access_token !== '') {
+      const headers = { Authorization: `Bearer ${token.access_token}` };
+      const getUser = async (): Promise<string> => {
+        const response = await fetch('https://api.spotify.com/v1/me', {
+          headers,
+        });
+        const data = await response.json();
+        setUserID(data.id);
+        return data;
+      };
+      getUser();
+    }
   }, [token]);
 
   useEffect(() => {
