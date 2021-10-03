@@ -1,7 +1,9 @@
-import playlistTypes, {
-  ResponseGenerator,
-  getUserPlaylistFailure,
-} from './playlistTypes';
+import playlistTypes from './playlistTypes';
+import { ResponseGenerator } from '../../redux/types';
+
+export interface getUserPlaylistFailure {
+  error: string;
+}
 
 export const createPlaylistStart = (payload: string) => ({
   type: playlistTypes.CREATE_PLAYLIST_START,

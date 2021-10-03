@@ -1,30 +1,22 @@
-import { takeLatest, put, call } from 'redux-saga/effects';
-import types from '../redux/types';
-import * as services from '../containers/playListServices';
-import * as actions from '../containers/playlistActions';
-import { ResponseGenerator } from '../containers/playlistTypes';
+import { takeEvery, put, call } from 'redux-saga/effects';
+import playlistTypes from '../containers/playlist/playlistTypes';
+import { ResponseGenerator } from '../redux/types';
+import getUserPlaylist from '../containers/playlist/playListServices';
 
-function* getUserPlaylists() {
+function* getUserPlaylistsWorker() {
   try {
-    const response: ResponseGenerator = yield call(services.getUserPlaylists);
-    yield put(
-      actions.getUserPlaylistsSuccess({
-        items: response,
-      })
-    );
-    return response;
+    const playlist: ResponseGenerator = yield call(getUserPlaylist);
+    yield put({
+      type: playlistTypes.GET_USER_PLAYLISTS_SUCCESS,
+      items: playlist,
+    });
   } catch (err) {
-    yield put(
-      actions.getUserPlaylistsFailure({
-        error: 'error',
-      })
-    );
-    return err;
+    yield put({ type: playlistTypes.GET_USER_PLAYLISTS_FAILURE, items: err });
   }
 }
 
 function* getUserPlaylistsSaga() {
-  yield takeLatest(types.GET_USER_PLAYLISTS_START, getUserPlaylists);
+  yield takeEvery('GET_USER_PLAYLISTS_START', getUserPlaylistsWorker);
 }
 
 export default getUserPlaylistsSaga;

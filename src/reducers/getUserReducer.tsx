@@ -1,21 +1,40 @@
-import { getUserSuccess } from '../redux/actions';
+import userTypes, { getUserState } from '../containers/user/userTypes';
+import { EmptyObject } from '../redux/types';
 
-const initialState: getUserSuccess = {
-  type: 'GET_USER_SUCCESS',
-  id: '',
+const initialState: getUserState = {
+  type: 'GET_USER_START',
+  pending: false,
+  id: {},
 };
 
-type Action = { type: 'GET_USER_SUCCESS'; payload: getUserSuccess };
+export type getUsers = {
+  type: string;
+  pending: boolean;
+  id: EmptyObject;
+};
 
-const getUserReducer = (
-  state: getUserSuccess = initialState,
-  action: Action
-) => {
+type Action = { type: string; id: getUsers };
+
+const getUserReducer = (state: getUserState = initialState, action: Action) => {
   switch (action.type) {
-    case 'GET_USER_SUCCESS': {
+    case userTypes.GET_USER_START: {
       return {
         ...state,
-        id: action.payload.id,
+        pending: true,
+      };
+    }
+    case userTypes.GET_USER_SUCCESS: {
+      return {
+        ...state,
+        pending: false,
+        id: action.id,
+      };
+    }
+    case userTypes.GET_USER_FAILURE: {
+      return {
+        ...state,
+        pending: false,
+        error: action.id,
       };
     }
     default:
