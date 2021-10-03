@@ -1,11 +1,6 @@
 .header {
+  @include defaultFlex;
   height: 10%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 2%;
 
   h1 {
     margin: 1rem;
@@ -35,6 +30,6 @@
   }
 
   @media (max-width: $breakpoint-tablet) {
-    height: 22%;
+    height: 35%;
   }
 }

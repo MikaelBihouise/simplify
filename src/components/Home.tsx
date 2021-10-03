@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../styles/style.css';
 import Header from './Header';
+import Content from './Content';
 import { RootState } from '../reducers/RootReducer';
 import AuthentificationAccess from './AuthentificationAccess';
 import { getUserStart } from '../containers/user/userActions';
@@ -31,6 +32,7 @@ function Home() {
   return (
     <div className="app">
       <Header />
+      <Content />
     </div>
   );
 }
