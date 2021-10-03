@@ -13,6 +13,10 @@
   margin-right: auto !important;
 }
 
+.bold {
+  font-weight: 700 !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +28,7 @@ html,
 body {
   font-size: 62.5%;
   height: 100%;
+  background-color: #000;
 }
 
 body {
@@ -68,7 +73,6 @@ img {
 }
 
 .header {
-  height: 10%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -82,6 +86,7 @@ img {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 2%;
+  height: 10%;
 }
 
 .header h1 {
@@ -142,7 +147,106 @@ img {
 
 @media (max-width: 768px) {
   .header {
-    height: 22%;
+    height: 35%;
   }
+}
+
+.content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2%;
+  margin-top: -2rem;
+  -webkit-box-align: start !important;
+      -ms-flex-align: start !important;
+          align-items: flex-start !important;
+  margin-top: auto;
+}
+
+.content .content-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 10%;
+  width: 100%;
+}
+
+.content .content-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
+.content .content-body .track-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100px;
+  width: 90%;
+  background-color: #fff;
+  color: #000;
+  padding: 7rem 3rem;
+  margin: 5rem 0 0 0;
+}
+
+.content .content-body .track-card p {
+  margin: 1rem 3rem;
+  font-weight: 400;
+}
+
+.content .content-body .track-card img {
+  height: 80px;
+  width: 80px;
+}
+
+@media (min-width: 768px) and (max-width: 1024x) {
+  .content .content-body .track-card {
+    width: 100%;
+  }
+}
+
+.content .select {
+  width: 400px;
+  margin: 1rem;
+  font-family: "Ubuntu", sans-serif;
+  color: #000;
+}
+
+.content p {
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin: 1rem;
 }
 /*# sourceMappingURL=style.css.map */
