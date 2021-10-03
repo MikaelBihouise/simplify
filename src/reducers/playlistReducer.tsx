@@ -1,14 +1,25 @@
-import { GetPlaylistActions, getPlaylistState } from '../redux/actions';
-import playlistTypes from '../containers/playlistTypes';
+import { EmptyObject } from '../redux/types';
+import playlistTypes, {
+  getPlaylistState,
+} from '../containers/playlist/playlistTypes';
 
 const initialState: getPlaylistState = {
+  type: 'GET_USER_PLAYLISTS_START',
   pending: false,
-  items: [],
+  items: {},
 };
+
+export type getPlaylists = {
+  type: string;
+  pending: boolean;
+  items: EmptyObject;
+};
+
+type Action = { type: string; items: getPlaylists };
 
 const getPlaylistsReducer = (
   state: getPlaylistState = initialState,
-  action: GetPlaylistActions
+  action: Action
 ) => {
   switch (action.type) {
     case playlistTypes.GET_USER_PLAYLISTS_START:
@@ -20,14 +31,14 @@ const getPlaylistsReducer = (
       return {
         ...state,
         pending: false,
-        items: action,
+        items: action.items,
       };
     }
     case playlistTypes.GET_USER_PLAYLISTS_FAILURE:
       return {
         ...state,
         pending: false,
-        error: action,
+        error: action.items,
       };
     default: {
       return state;
