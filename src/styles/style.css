@@ -85,8 +85,9 @@ img {
           justify-content: flex-start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 2%;
+  padding: 3.5rem;
   height: 10%;
+  position: relative;
 }
 
 .header h1 {
@@ -171,34 +172,104 @@ img {
   margin: 0.5rem 0;
 }
 
+@media (max-width: 768px) {
+  .header .search-card p {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header .search-card {
+    width: 300px;
+  }
+}
+
 .header .search-card-0 {
   position: absolute;
-  top: 80px;
-  left: 175px;
+  top: 86px;
+  left: 180px;
+}
+
+@media (max-width: 768px) {
+  .header .search-card-0 {
+    position: absolute;
+    top: 175px;
+    left: 3rem;
+  }
 }
 
 .header .search-card-1 {
   position: absolute;
-  top: 183px;
-  left: 175px;
+  top: 189px;
+  left: 180px;
+}
+
+@media (max-width: 768px) {
+  .header .search-card-1 {
+    position: absolute;
+    top: 278px;
+    left: 3rem;
+  }
 }
 
 .header .search-card-2 {
   position: absolute;
-  top: 286px;
-  left: 175px;
+  top: 292px;
+  left: 180px;
+}
+
+@media (max-width: 768px) {
+  .header .search-card-2 {
+    position: absolute;
+    top: 381px;
+    left: 3rem;
+  }
 }
 
 .header .search-card-3 {
   position: absolute;
-  top: 389px;
-  left: 175px;
+  top: 395px;
+  left: 180px;
+}
+
+@media (max-width: 768px) {
+  .header .search-card-3 {
+    position: absolute;
+    top: 484px;
+    left: 3rem;
+  }
 }
 
 .header .search-card-4 {
   position: absolute;
-  top: 492px;
-  left: 175px;
+  top: 498px;
+  left: 180px;
+}
+
+@media (max-width: 768px) {
+  .header .search-card-4 {
+    position: absolute;
+    top: 587px;
+    left: 3rem;
+  }
+}
+
+.header .search-card-button {
+  border: none;
+  border-radius: 25px;
+  padding: 10px 15px;
+  margin: 1rem;
+  background-color: #1db954;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.8rem;
+  font-family: "Ubuntu", sans-serif;
+  margin-left: auto;
+}
+
+.header .search-card-button:hover {
+  background-color: #16873d;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) and (max-width: 1024x) {
@@ -210,6 +281,7 @@ img {
 @media (max-width: 768px) {
   .header {
     height: 35%;
+    padding: 2rem;
   }
 }
 
@@ -226,7 +298,7 @@ img {
           justify-content: flex-start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 2%;
+  padding: 3.5rem;
   margin-top: -2rem;
   -webkit-box-align: start !important;
       -ms-flex-align: start !important;

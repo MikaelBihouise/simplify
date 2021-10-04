@@ -15,6 +15,7 @@ interface playlist {
 }
 
 export interface cardInfo {
+  key: string;
   img: string;
   trackName: string;
   artistName: string;
@@ -39,6 +40,7 @@ function Content() {
   });
   const [currentInfo, setCurrentInfo] = useState<cardInfo[]>([
     {
+      key: '',
       img: '',
       trackName: '',
       artistName: '',
@@ -57,6 +59,7 @@ function Content() {
       displayPublicPlaylist = playlists
         .filter((item: any) => item.public === true)
         .map((item: any) => ({
+          id: item.id,
           value: item.name,
           label: item.name,
           desc: item.description,
@@ -76,6 +79,7 @@ function Content() {
       (item: playlist) => e.value.toString() === item.value.toString()
     );
     setCurrentPlaylist(findCurrentPlaylist[0]);
+    localStorage.setItem('currentPlaylist', findCurrentPlaylist[0].id);
     localStorage.setItem(
       'playlistTracksURL',
       findCurrentPlaylist[0].tracks.href
@@ -86,6 +90,7 @@ function Content() {
   useEffect(() => {
     if (playlistTracks) {
       tracksInfo = playlistTracks.map((items: any) => ({
+        key: items.track.id,
         img: items.track.album.images[0].url,
         trackName: items.track.name,
         artistName: items.track.artists[0].name,
@@ -99,6 +104,7 @@ function Content() {
   if (currentInfo[0].artistName !== '') {
     showTracks = currentInfo.map((tracks: cardInfo) => (
       <TrackCard
+        key={tracks.key}
         img={tracks.img}
         trackName={tracks.trackName}
         artistName={tracks.artistName}
