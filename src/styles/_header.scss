@@ -25,6 +25,58 @@
     @include defaultButton;
   }
 
+  .search-card {
+    z-index: 9999;
+    background-color: $color-white;
+    width: 500px;
+    height: 100px;
+    color: $color-black;
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+
+    img {
+      width: 60px;
+      height: 60px;
+      margin-right: 2rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .search-card-0 {
+    position: absolute;
+    top: 80px;
+    left: 175px;
+  }
+
+  .search-card-1 {
+    position: absolute;
+    top: 183px;
+    left: 175px;
+  }
+  .search-card-2 {
+    position: absolute;
+    top: 286px;
+    left: 175px;
+  }
+  .search-card-3 {
+    position: absolute;
+    top: 389px;
+    left: 175px;
+  }
+  .search-card-4 {
+    position: absolute;
+    top: 492px;
+    left: 175px;
+  }
+
   @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
     height: 15%;
   }

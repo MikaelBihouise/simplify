@@ -87,7 +87,7 @@ function Content() {
     if (playlistTracks) {
       tracksInfo = playlistTracks.map((items: any) => ({
         img: items.track.album.images[0].url,
-        trackName: items.track.album.name,
+        trackName: items.track.name,
         artistName: items.track.artists[0].name,
         albumName: items.track.album.name,
         releaseDate: items.track.album.release_date,

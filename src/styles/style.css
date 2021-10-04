@@ -139,6 +139,68 @@ img {
   cursor: pointer;
 }
 
+.header .search-card {
+  z-index: 9999;
+  background-color: #fff;
+  width: 500px;
+  height: 100px;
+  color: #000;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.header .search-card img {
+  width: 60px;
+  height: 60px;
+  margin-right: 2rem;
+}
+
+.header .search-card p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0.5rem 0;
+}
+
+.header .search-card-0 {
+  position: absolute;
+  top: 80px;
+  left: 175px;
+}
+
+.header .search-card-1 {
+  position: absolute;
+  top: 183px;
+  left: 175px;
+}
+
+.header .search-card-2 {
+  position: absolute;
+  top: 286px;
+  left: 175px;
+}
+
+.header .search-card-3 {
+  position: absolute;
+  top: 389px;
+  left: 175px;
+}
+
+.header .search-card-4 {
+  position: absolute;
+  top: 492px;
+  left: 175px;
+}
+
 @media (min-width: 768px) and (max-width: 1024x) {
   .header {
     height: 15%;

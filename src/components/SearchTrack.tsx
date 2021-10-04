@@ -1,24 +1,92 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import SearchResult from '../childComponents/SearchResults';
 
-interface NewSearchTerm {
-  addTerm(term: string): void;
+export interface Result {
+  className: string;
+  img: string;
+  trackName: string;
+  albumName: string;
+  artistName: string;
+  id: string;
 }
 
 const SearchTrack = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
+  const [searchResults, setSearchResults] = useState<any>([]);
+  const [currentInfo, setCurrentInfo] = useState<Result[]>([
+    {
+      className: '',
+      img: '',
+      trackName: '',
+      albumName: '',
+      artistName: '',
+      id: '',
+    },
+  ]);
+  let tracksInfo: Result[];
+  let showResults: any[] = [];
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    setSearch(event.target.value);
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const getSearch = async (): Promise<string> => {
+      const token = localStorage.getItem('accessToken');
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await fetch(
+        `https://api.spotify.com/v1/search/?q=${search}&type=track&limit=5`,
+        {
+          headers,
+          method: 'GET',
+        }
+      );
+      const data = await response.json();
+      setSearchResults(data.tracks.items);
+      return data;
+    };
+    getSearch();
+  };
+
+  useEffect(() => {
+    tracksInfo = searchResults.map((items: any) => ({
+      img: items.album.images[0].url,
+      trackName: items.name,
+      albumName: items.album.name,
+      artistName: items.artists[0].name,
+      id: items.id,
+    }));
+    setCurrentInfo(tracksInfo);
+  }, [searchResults]);
+
+  if (currentInfo !== []) {
+    showResults = currentInfo.map((tracks: any, index: number) => (
+      <SearchResult
+        className={`search-card-${index}`}
+        key={tracks.id}
+        img={tracks.img}
+        trackName={tracks.trackName}
+        artistName={tracks.artistName}
+        albumName={tracks.albumName}
+        id={tracks.id}
+      />
+    ));
+  }
+
+  console.log(searchResults);
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search for a track"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      <button type="button">Search</button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search for a track"
+          value={search}
+          onChange={handleSearch}
+        />
+        <button type="submit">Search</button>
+      </form>
+      {showResults}
     </div>
   );
 };
