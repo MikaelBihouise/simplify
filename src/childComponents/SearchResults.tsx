@@ -1,22 +1,21 @@
 import React from 'react';
-import { cardInfo } from '../components/Content';
+import { Result } from '../components/SearchTrack';
 
-const TrackCard: React.FC<cardInfo> = ({
+const SearchResult: React.FC<Result> = ({
   img,
   trackName,
-  artistName,
   albumName,
-  releaseDate,
+  artistName,
+  className,
+  id,
 }) => (
-  <div className="track-card">
+  <div className={`search-card ${className}`}>
     <img src={img} alt={`${albumName} album cover`} />
     <div>
       <p className="bold">{trackName}</p>
       <p>{artistName}</p>
     </div>
-    <p>{albumName}</p>
-    <p>{releaseDate}</p>
   </div>
 );
 
-export default TrackCard;
+export default SearchResult;
