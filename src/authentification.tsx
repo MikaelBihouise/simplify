@@ -3,6 +3,7 @@ const redirectAfterLog = 'http://localhost:3000/';
 const scopes = [
   'playlist-read-private',
   'playlist-modify-private',
+  'playlist-modify-public',
   'user-read-recently-played',
 ];
 const scopesURL = scopes.join(' ');

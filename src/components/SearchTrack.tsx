@@ -23,9 +23,15 @@ const SearchTrack = () => {
       id: '',
     },
   ]);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   let tracksInfo: Result[];
   let showResults: any[] = [];
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value !== '') {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
     setSearch(event.target.value);
   };
 
@@ -73,7 +79,11 @@ const SearchTrack = () => {
     ));
   }
 
-  console.log(searchResults);
+  const handleClick = () => {
+    setSearch('');
+    setCurrentInfo([]);
+    setIsDisabled(true);
+  };
 
   return (
     <div>
@@ -83,8 +93,11 @@ const SearchTrack = () => {
           placeholder="Search for a track"
           value={search}
           onChange={handleSearch}
+          onClick={handleClick}
         />
-        <button type="submit">Search</button>
+        <button type="submit" disabled={isDisabled}>
+          Search
+        </button>
       </form>
       {showResults}
     </div>

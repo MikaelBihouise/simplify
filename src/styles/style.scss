@@ -16,9 +16,9 @@ $breakpoint-tablet: 768px;
 $breakpoint-mobile: 360px;
 
 // Mixin and abstract classes
-@mixin flexCenter {
+@mixin flexStartCenter {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -28,7 +28,7 @@ $breakpoint-mobile: 360px;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding: 2%;
+  padding: 3.5rem;
 }
 
 @mixin defaultButton {
@@ -45,6 +45,12 @@ $breakpoint-mobile: 360px;
     background-color: $color-1-2;
     cursor: pointer;
   }
+}
+
+@mixin position($position, $top: null, $left: null) {
+  position: $position;
+  top: $top;
+  left: $left;
 }
 
 .ml-auto {

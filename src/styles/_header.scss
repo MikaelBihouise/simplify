@@ -1,6 +1,7 @@
 .header {
   @include defaultFlex;
   height: 10%;
+  position: relative;
 
   h1 {
     margin: 1rem;
@@ -47,34 +48,70 @@
       font-size: 1.5rem;
       font-weight: 400;
       margin: 0.5rem 0;
+
+      @media (max-width: $breakpoint-tablet) {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      width: 300px;
     }
   }
 
   .search-card-0 {
-    position: absolute;
-    top: 80px;
-    left: 175px;
+    @include position(absolute, $top: 86px, $left: 180px);
+
+    @media (max-width: $breakpoint-tablet) {
+      @include position(absolute, $top: 175px, $left: 3rem);
+    }
   }
 
   .search-card-1 {
-    position: absolute;
-    top: 183px;
-    left: 175px;
+    @include position(absolute, $top: 189px, $left: 180px);
+
+    @media (max-width: $breakpoint-tablet) {
+      @include position(absolute, $top: 278px, $left: 3rem);
+    }
   }
   .search-card-2 {
-    position: absolute;
-    top: 286px;
-    left: 175px;
+    @include position(absolute, $top: 292px, $left: 180px);
+
+    @media (max-width: $breakpoint-tablet) {
+      @include position(absolute, $top: 381px, $left: 3rem);
+    }
   }
   .search-card-3 {
-    position: absolute;
-    top: 389px;
-    left: 175px;
+    @include position(absolute, $top: 395px, $left: 180px);
+
+    @media (max-width: $breakpoint-tablet) {
+      @include position(absolute, $top: 484px, $left: 3rem);
+    }
   }
   .search-card-4 {
-    position: absolute;
-    top: 492px;
-    left: 175px;
+    @include position(absolute, $top: 498px, $left: 180px);
+
+    @media (max-width: $breakpoint-tablet) {
+      @include position(absolute, $top: 587px, $left: 3rem);
+    }
+  }
+
+  .search-card-button {
+    border: none;
+    border-radius: 25px;
+    padding: 10px 15px;
+    margin: 1rem;
+    background-color: $color-1-1;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.8rem;
+    font-family: $typo-1;
+    margin-left: auto;
+
+    &:hover {
+      background-color: $color-1-2;
+      cursor: pointer;
+    }
   }
 
   @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
@@ -83,5 +120,6 @@
 
   @media (max-width: $breakpoint-tablet) {
     height: 35%;
+    padding: 2rem;
   }
 }
