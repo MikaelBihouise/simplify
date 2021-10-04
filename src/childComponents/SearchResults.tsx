@@ -28,7 +28,6 @@ function SearchResult({
       return data;
     };
     addTrack();
-    localStorage.setItem('refreshList', id);
   };
 
   return (
