@@ -1,14 +1,24 @@
 import React from 'react';
-import { Result } from '../components/SearchTrack';
+
+export interface ShowResult {
+  visible: React.Dispatch<React.SetStateAction<boolean>>;
+  className: string;
+  img: string;
+  trackName: string;
+  albumName: string;
+  artistName: string;
+  id: string;
+}
 
 function SearchResult({
+  visible,
   img,
   trackName,
   albumName,
   artistName,
   className,
   id,
-}: Result) {
+}: ShowResult) {
   const handleClick = () => {
     const addTrack = async () => {
       const token = localStorage.getItem('accessToken');
@@ -28,6 +38,7 @@ function SearchResult({
       return data;
     };
     addTrack();
+    visible(false);
   };
 
   return (

@@ -21,6 +21,13 @@
     background-color: $color-white;
     padding: 5rem;
     color: $color-black;
+
+    @media (max-width: $breakpoint-mobile) {
+      width: 320px;
+      top: 300px;
+      left: 160px;
+      padding: 2rem 2rem 4rem 2rem;
+    }
   }
 
   p {
@@ -41,6 +48,10 @@
     border: 1px solid $color-black;
     margin: 1.5rem 0 2.5rem 0;
     font-size: 1.5rem;
+
+    @media (max-width: $breakpoint-tablet) {
+      width: 260px;
+    }
   }
 
   textarea {
@@ -59,6 +70,10 @@
       color: $color-2;
       font-family: $typo-1;
       font-size: 1.5rem;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      width: 260px;
     }
   }
 

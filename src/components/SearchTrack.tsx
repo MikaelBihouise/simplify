@@ -12,6 +12,7 @@ export interface Result {
 
 const SearchTrack = () => {
   const [search, setSearch] = useState<string>('');
+  const [resultVisible, setResultVisible] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any>([]);
   const [currentInfo, setCurrentInfo] = useState<Result[]>([
     {
@@ -24,6 +25,7 @@ const SearchTrack = () => {
     },
   ]);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
+
   let tracksInfo: Result[];
   let showResults: any[] = [];
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,6 +54,7 @@ const SearchTrack = () => {
       return data;
     };
     getSearch();
+    setResultVisible(true);
   };
 
   useEffect(() => {
@@ -66,17 +69,20 @@ const SearchTrack = () => {
   }, [searchResults]);
 
   if (currentInfo !== []) {
-    showResults = currentInfo.map((tracks: any, index: number) => (
-      <SearchResult
-        className={`search-card-${index}`}
-        key={tracks.id}
-        img={tracks.img}
-        trackName={tracks.trackName}
-        artistName={tracks.artistName}
-        albumName={tracks.albumName}
-        id={tracks.id}
-      />
-    ));
+    showResults = resultVisible
+      ? currentInfo.map((tracks: any, index: number) => (
+          <SearchResult
+            visible={setResultVisible}
+            className={`search-card-${index}`}
+            key={tracks.id}
+            img={tracks.img}
+            trackName={tracks.trackName}
+            artistName={tracks.artistName}
+            albumName={tracks.albumName}
+            id={tracks.id}
+          />
+        ))
+      : [null];
   }
 
   const handleClick = () => {
