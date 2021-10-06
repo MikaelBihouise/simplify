@@ -8,6 +8,7 @@ import { EmptyObject } from '../redux/types';
 import TrackCard from '../childComponents/TrackCard';
 
 interface playlist {
+  id: string;
   value: string;
   label: string;
   desc: string;
@@ -23,6 +24,11 @@ export interface cardInfo {
   releaseDate: string;
 }
 
+interface OptionsInterface {
+  value: string;
+  label: string;
+}
+
 function Content() {
   const dispatch = useDispatch();
   const playlists = useSelector(
@@ -33,6 +39,7 @@ function Content() {
   );
 
   const [currentPlaylist, setCurrentPlaylist] = useState<playlist>({
+    id: '',
     value: '',
     label: '',
     desc: '',
@@ -48,34 +55,55 @@ function Content() {
       releaseDate: '',
     },
   ]);
-  let displayPublicPlaylist: any;
+  const [selectOptions, setSelectOptions] = useState<OptionsInterface[]>([
+    {
+      value: '',
+      label: '',
+    },
+  ]);
+  const [savedPlaylist, setSavedPlaylist] = useState<playlist[]>([
+    {
+      id: '',
+      value: '',
+      label: '',
+      desc: '',
+      tracks: {},
+    },
+  ]);
+  const [isPlaylistsLoaded, setIsPlaylistsLoaded] = useState<boolean>(false);
+  const [playlistSelected, setPlaylistSelected] = useState<boolean>(false);
+  let displayPlaylist: any;
   let filterSelectValues: any;
   let tracksInfo: cardInfo[];
   let showTracks: any = [];
-  const options: { value: string; label: string }[] = [];
 
   useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      displayPublicPlaylist = playlists
-        .filter((item: any) => item.public === true)
-        .map((item: any) => ({
-          id: item.id,
-          value: item.name,
-          label: item.name,
-          desc: item.description,
-          tracks: item.tracks,
-        }));
-      filterSelectValues = displayPublicPlaylist.map((item: any) => ({
+    if (playlists !== [] && playlists !== undefined) {
+      setIsPlaylistsLoaded(true);
+    }
+  }, [playlists]);
+
+  useEffect(() => {
+    if (isPlaylistsLoaded) {
+      displayPlaylist = playlists.map((item: any) => ({
+        id: item.id,
+        value: item.name,
+        label: item.name,
+        desc: item.description,
+        tracks: item.tracks,
+      }));
+      filterSelectValues = displayPlaylist.map((item: any) => ({
         value: item.value,
         label: item.label,
       }));
-      options.push(...filterSelectValues);
+      setSelectOptions(filterSelectValues);
+      setSavedPlaylist(displayPlaylist);
     }
-  }, [playlists, playlistTracks]);
+  }, [isPlaylistsLoaded]);
 
   const handleChange = (e: any) => {
     dispatch(getUserPlaylistsStart());
-    const findCurrentPlaylist = displayPublicPlaylist.filter(
+    const findCurrentPlaylist = savedPlaylist.filter(
       (item: playlist) => e.value.toString() === item.value.toString()
     );
     setCurrentPlaylist(findCurrentPlaylist[0]);
@@ -85,6 +113,7 @@ function Content() {
       findCurrentPlaylist[0].tracks.href
     );
     dispatch(getUserPlaylistsTracksStart());
+    setPlaylistSelected(true);
   };
 
   useEffect(() => {
@@ -101,7 +130,7 @@ function Content() {
     }
   }, [playlistTracks]);
 
-  if (currentInfo[0].artistName !== '') {
+  if (currentInfo !== [] && playlistSelected) {
     showTracks = currentInfo.map((tracks: cardInfo) => (
       <TrackCard
         key={tracks.key}
@@ -112,18 +141,20 @@ function Content() {
         releaseDate={tracks.releaseDate}
       />
     ));
+  } else {
+    showTracks = null;
   }
 
   return (
     <div className="content">
       <div className="content-header">
         <Select
-          options={options}
+          options={selectOptions}
           placeholder="Select a playlist"
           className="select"
           onChange={handleChange}
         />
-        <p>{currentPlaylist.desc}</p>
+        <p>{currentPlaylist.desc.toString()}</p>
       </div>
       <div className="content-body">{showTracks}</div>
     </div>

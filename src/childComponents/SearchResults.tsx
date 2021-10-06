@@ -41,6 +41,7 @@ function SearchResult({
         type="button"
         onClick={handleClick}
         className="search-card-button"
+        aria-label="Add this track to your current playlist"
       >
         +
       </button>

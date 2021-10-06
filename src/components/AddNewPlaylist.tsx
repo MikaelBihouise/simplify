@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import NewPlaylist from '../childComponents/NewPlaylist';
 
 const AddNewPlaylist = () => {
+  const [popinVisible, setPopinVisible] = useState<boolean>(false);
+
+  const showPopup = popinVisible ? (
+    <NewPlaylist visible={setPopinVisible} />
+  ) : null;
+
   const handleClick = () => {
-    console.log('HEY');
+    setPopinVisible(!popinVisible);
   };
 
   return (
-    <button type="button" onClick={handleClick} className="ml-auto">
-      Add New Playlist
-    </button>
+    <>
+      <button type="button" onClick={handleClick} className="ml-auto">
+        Add New Playlist
+      </button>
+      {showPopup}
+    </>
   );
 };
 
